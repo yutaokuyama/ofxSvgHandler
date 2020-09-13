@@ -1,6 +1,5 @@
 //
 //  ofxSVGHandler.hpp
-//  logoWireFramer
 //
 //  Created by okuyama on 2020/09/14.
 //
