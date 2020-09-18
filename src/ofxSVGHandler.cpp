@@ -7,17 +7,18 @@
 #include "ofxSVGHandler.h"
 
 void ofxSVGHandler::load(string path){
+    outlines.clear();
     svg.load(path);
     for (ofPath p: svg.getPaths()){
         p.setPolyWindingMode(OF_POLY_WINDING_ODD);
         const vector<ofPolyline>& lines = p.getOutline();
         for(const ofPolyline & line: lines){
-            outlines.push_back(line.getResampledBySpacing(1));
+            outlines.push_back(line.getResampledBySpacing(1.0));
         }
     }
 }
 
-void ofxSVGHandler::draw(){
+void ofxSVGHandler::draw(bool isWireFrame){
     ofPushMatrix();
     ofScale(1.0,-1.0,1.0);
     ofTranslate(-svg.getWidth()/2,-svg.getHeight()/2.0);
@@ -41,11 +42,4 @@ void ofxSVGHandler::drawWireFrame(){
         ofEndShape();
     }
     ofFill();
-}
-
-void ofxSVGHandler::setIsWireFrame(bool toggle){
-    isWireFrame = toggle;
-}
-bool ofxSVGHandler::getIsWireFrame(){
-    return  isWireFrame;
 }

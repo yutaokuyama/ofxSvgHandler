@@ -8,13 +8,10 @@
 class ofxSVGHandler{
 public:
     void load(string path="sample.svg");
-    void draw();
-    void setIsWireFrame(bool toggle);
-    bool getIsWireFrame();
+    void draw(bool isWireFrame);
     
 private:
     void drawWireFrame();
-    bool isWireFrame = false;
     ofxSVG svg;
     vector<ofPolyline> outlines;
 };
